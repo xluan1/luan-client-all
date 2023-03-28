@@ -1,0 +1,14 @@
+.cb-title {
+    text-align: center;
+    margin: 1.2rem 0;
+    padding: 1.5rem;
+    color: #354F52;
+    font-family: 'Bree Serif', serif;
+    font-weight: bold;
+}
+
+.cb-timer {
+    color: #354F52;
+    font-family: 'Bree Serif', serif;
+    font-size: 1.25rem;
+}

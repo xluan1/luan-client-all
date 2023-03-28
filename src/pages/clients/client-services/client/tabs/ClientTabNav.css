@@ -1,0 +1,12 @@
+.card-header {
+    margin: 1.5rem 0;
+}
+
+.nav-item .nav-link {
+    color: #52796F;
+    font-weight: 500;
+}
+
+.nav-item .nav-link:hover {
+    color: #2F3E46;
+}

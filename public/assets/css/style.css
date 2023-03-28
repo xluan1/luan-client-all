@@ -1,0 +1,277 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+SC:wght@700&family=EB+Garamond&display=swap');
+
+body {
+  background-color: #f4f7fc;
+}
+
+a {
+  text-decoration: none;
+}
+
+h4 {
+  color: #354F52;
+  font-family: 'Bree Serif', serif;
+}
+
+h5 {
+  color: #84A98C;
+  font-weight: 400;
+  font-size: 1rem
+}
+
+thead {
+  background-color: #fff;
+}
+
+th {
+  color: #354F52;
+  font-family: 'Bree Serif', serif;
+}
+
+.img-logo {
+  width: 60px;
+  height: 40px;
+}
+
+.icon-header {
+  padding: 0.5rem 0.3rem;
+  margin: 0 0.5rem;
+  color: #84A98C;
+  border: 1px solid #52796F;
+}
+
+.icon-header:hover,
+.icon-header.show {
+  color: #2F3E46;
+}
+
+.icon-top-right {
+  position: absolute;
+  top: 0;
+  left: 100%;
+  transform: translate(-50%, -50%);
+  font-weight: 600;
+  font-size: 0.65rem;
+  line-height: 1;
+  color: #dc3545;
+}
+
+.fw-bold {
+  font-weight: 600 !important;
+}
+
+.d-grid.gap-3 {
+  grid-template-columns: 0.5fr 1.5fr;
+}
+
+.search-col {
+  display: flex;
+}
+
+.sidebar {
+  background: #fff;
+  border: 1px solid #cad2c5;
+  max-width: 250px;
+  min-width: 250px;
+  min-height: 100vh;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.sidebar .sidebar-user .dropdown-menu.show {
+  position: absolute;
+  left: 30% !important;
+  inset: 0px auto auto 0px;
+  margin: 0px;
+  transform: translate(64px, 46px);
+}
+
+.sidebar-content {
+  height: 100%;
+  min-height: 100%;
+}
+
+.sidebar-user {
+  background: #fff;
+  padding: 1.5rem 1rem 1rem;
+  text-align: center;
+}
+
+.sidebar-user .rounded-circle img {
+  height: 64px;
+  width: 64px;
+}
+
+.sidebar-nav {
+  flex: 1;
+  justify-content: flex-start;
+  margin-bottom: 0;
+  padding-left: 0;
+}
+
+.sidebar-content .sidebar-nav {
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-header {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #52796f;
+}
+
+.sidebar-link,
+a.sidebar-link {
+  border-radius: 0.2rem;
+  cursor: pointer;
+  /* margin: 0 0.5rem; */
+  padding: 0.65rem 0.5rem;
+  display: block;
+}
+
+.sidebar-item .sidebar-link span {
+  color: #2F3E46;
+}
+
+.sidebar-dropdown .sidebar-link {
+  padding: 0.35rem 1.2rem 0.35rem 1.6rem;
+  font-size: 0.85rem;
+  color: #84A98C;
+  margin-left: 0.5rem;
+}
+
+.sidebar-dropdown .sidebar-link:hover {
+  color: #354F52;
+}
+
+.sidebar-item i {
+  color: #354F52;
+  margin-right: 0.15rem;
+}
+
+.menu-toggler {
+  border-radius: 0.4rem;
+}
+
+a.sidebar-link.dropdown-toggle::after {
+  color: #84A98C;
+}
+
+.main {
+  height: 100vh;
+  min-width: 0;
+}
+
+.main-half {
+  height: 50vh;
+  min-width: 0;
+}
+
+
+.main .main-header {
+  margin: 2rem 0;
+}
+
+.main .main-header p {
+  color: #84A98C;
+  font-family: 'EB Garamond', serif;
+}
+
+.card-body .card-title {
+  color: #2F3E46;
+  font-size: 0.925rem;
+  font-weight: 500;
+}
+
+.quantity-dashboard {
+  font-weight: 300;
+  line-height: 1.2;
+  color: #84A98C;
+}
+
+.icon-dashboard {
+  font-size: 30px;
+  color: #52796F;
+}
+
+.img-recommend-modal {
+  width: 60px;
+  height: 60px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: .65rem;
+}
+
+.mt-percent-1_5 {
+  margin-top: 15% !important;
+}
+
+.login {
+  border: none;
+  background-color: transparent;
+}
+
+.login .card-title {
+  font-size: 2rem;
+  line-height: 2;
+  font-weight: 600;
+  color: #52796f;
+}
+
+.btn-custom {
+  border-radius: 0.5rem;
+  background-color: #84A98C;
+  /* margin: 0.5rem 2rem; */
+  padding: .4rem 1.25rem;
+  color: #2F3E46;
+  border: none;
+}
+
+.btn-custom:hover {
+  border-color: #2F3E46;
+  background-color: #52796F;
+}
+
+.btn-custom:focus {
+  background-color: #84A98C;
+  border-color: #84A98C;
+}
+
+@media only screen and (max-width: 400px) {
+  .btn-custom {
+    padding: .4rem .5rem;
+  }
+}
+
+.text-pagination {
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
+  margin: 0 0.5rem;
+}
+
+/* .col-form-label.col-sm-3 {
+  text-align: center;
+} */
+
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background: #eee url(../img/caret-down-solid.png) 96% / 12% no-repeat;
+}
+
+/* login */
+.f-login {
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+  align-items: center;
+}
+
+.f-login>.row {
+  width: 50vw;
+}
