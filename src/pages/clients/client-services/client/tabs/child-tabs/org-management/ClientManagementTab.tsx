@@ -9,7 +9,7 @@ import TableCutom, {
 } from "../../../../../../../components/table-custom/TableCustom";
 import { selectUserOrgId } from "xuanluan-component/lib/redux/auth/auth-selectors";
 import { useAppSelector } from "xuanluan-component/lib/redux/store";
-import SearchFilter from "../../../../../../../utils/search/SearchFilter";
+import SearchFilter from "xuanluan-component/lib/utils/search/SearchFilter";
 import { searchOrganizationClient } from "../../../../../../../utils/service-api/org-service-api";
 import { ResultList } from "../../../../../../../utils/types/baseType";
 import { OrganizationClient } from "../../../../../../../utils/types/orgType";
@@ -18,6 +18,7 @@ import AddOrgClientModal from "./modal/ClientAddOrgModal";
 
 const columns: ColumnCustom[] = [
   { field: "orgId", header: "Mã Tổ chức" },
+  { field: "name", header: "Tên" },
   { field: "description", header: "Mô tả" },
   { field: "createdAt", header: "Ngày tạo" },
 ];
@@ -28,7 +29,7 @@ const ClientManagementTab = () => {
   const [result, setResult] = useState<ResultList<OrganizationClient>>();
   const { filter, changePageFilter, handleFilter } = SearchFilter<BaseFilter>({
     search: "",
-    offset: 0,
+    index: 0,
     maxResult: 20,
   });
   const userOrgId = useAppSelector(selectUserOrgId);
@@ -43,7 +44,7 @@ const ClientManagementTab = () => {
 
   useEffect(() => {
     userOrgId && searchFunction();
-  }, [filter.offset, filter.maxResult, outletContext.clientId, userOrgId]);
+  }, [filter.index, filter.maxResult, outletContext.clientId, userOrgId]);
 
   return (
     <>

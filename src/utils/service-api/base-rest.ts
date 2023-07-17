@@ -5,6 +5,7 @@ import { WrapperResponse } from "service-sdk/lib/types/BaseType";
 import RequestService from "service-sdk/lib/utils/index";
 import Swal from "sweetalert2";
 import { clientId } from "../constants/baseConstants";
+import { HeadersType } from "service-sdk/lib/utils/index";
 
 export const tokenHeader = (): string | undefined => {
   const cookieName: string = clientId + "_Token-CODE";
@@ -40,14 +41,14 @@ class RestController {
       fetch.data = response?.data;
       Toast.fire({ icon: "success", title: fetch.data.message });
     } catch (error) {
+      console.log(error);
+
       if (axios.isAxiosError(error)) {
         const err = error.response?.data;
         fetch.errors = err as WrapperResponse;
         processException(fetch.errors);
       }
     }
-    console.clear();
-
     return fetch;
   };
 
@@ -55,7 +56,7 @@ class RestController {
     path: string,
     body: any,
     csrftoken?: string,
-    contentType?: string
+    headers?: HeadersType[]
   ): Promise<BaseFetch> => {
     const fetch = new BaseFetch();
 
@@ -65,7 +66,7 @@ class RestController {
         body,
         clientId,
         csrftoken,
-        contentType
+        headers
       );
 
       fetch.data = response?.data;
@@ -84,7 +85,7 @@ class RestController {
     path: string,
     body: any,
     csrftoken?: string,
-    contentType?: string
+    headers?: HeadersType[]
   ): Promise<BaseFetch> => {
     const fetch = new BaseFetch();
     try {
@@ -93,7 +94,7 @@ class RestController {
         body,
         clientId,
         csrftoken,
-        contentType
+        headers
       );
 
       fetch.data = response.data;

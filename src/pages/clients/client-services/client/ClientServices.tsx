@@ -8,7 +8,7 @@ import TableCutom, {
   ColumnCustom,
 } from "../../../../components/table-custom/TableCustom";
 import { clientId } from "../../../../utils/constants/baseConstants";
-import SearchFilter from "../../../../utils/search/SearchFilter";
+import SearchFilter from "xuanluan-component/lib/utils/search/SearchFilter";
 import { searchClient } from "../../../../utils/service-api/client-service-api";
 import { ResultList } from "../../../../utils/types/baseType";
 import { Client } from "../../../../utils/types/clientType";
@@ -24,7 +24,7 @@ const columns: ColumnCustom[] = [
 const ClientServices: FC = (): ReactElement => {
   const { filter, changePageFilter, handleFilter } = SearchFilter<BaseFilter>({
     search: "",
-    offset: 0,
+    index: 0,
     maxResult: 20,
   });
   const [show, setShow] = useState(false);
@@ -37,7 +37,7 @@ const ClientServices: FC = (): ReactElement => {
     searchClient(clientId, filter).then((data) => {
       setResult(data.data?.data);
     });
-  }, [filter.offset, filter.maxResult]);
+  }, [filter.index, filter.maxResult]);
 
   return (
     <>

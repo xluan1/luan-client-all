@@ -7,7 +7,7 @@ import TableCutom, {
 } from "../../../../../../../components/table-custom/TableCustom";
 import { selectUserOrgId } from "xuanluan-component/lib/redux/auth/auth-selectors";
 import { useAppSelector } from "xuanluan-component/lib/redux/store";
-import SearchFilter from "../../../../../../../utils/search/SearchFilter";
+import SearchFilter from "xuanluan-component/lib/utils/search/SearchFilter";
 import { searchUser } from "../../../../../../../utils/service-api/auth-service-api";
 import { User, UserFilter } from "../../../../../../../utils/types/authType";
 import { ResultList } from "../../../../../../../utils/types/baseType";
@@ -27,7 +27,7 @@ const AccountClientManagementTab = () => {
   const [result, setResult] = useState<ResultList<User>>();
   const { filter, changePageFilter, handleFilter } = SearchFilter<UserFilter>({
     search: "",
-    offset: 0,
+    index: 0,
     maxResult: 20,
   });
   const userOrgId = useAppSelector(selectUserOrgId);
@@ -39,7 +39,7 @@ const AccountClientManagementTab = () => {
 
   useEffect(() => {
     userOrgId && searchFunction();
-  }, [filter.offset, filter.maxResult, outletContext.clientId, userOrgId]);
+  }, [filter.index, filter.maxResult, outletContext.clientId, userOrgId]);
 
   return (
     <>

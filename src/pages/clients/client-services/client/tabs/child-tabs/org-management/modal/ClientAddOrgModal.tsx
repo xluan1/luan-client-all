@@ -9,7 +9,7 @@ import {
   selectUserOrgId,
 } from "xuanluan-component/lib/redux/auth/auth-selectors";
 import { useAppSelector } from "xuanluan-component/lib/redux/store";
-import SearchFilter from "../../../../../../../../utils/search/SearchFilter";
+import SearchFilter from "xuanluan-component/lib/utils/search/SearchFilter";
 import {
   getStorageDetail,
   searchStorage,
@@ -46,7 +46,7 @@ const ClientAddOrgModal: FC<ShowModal> = ({ isOpened, handleClose }) => {
   );
   const { filter } = SearchFilter<ClientStorageFilter>({
     search: "",
-    offset: 0,
+    index: 0,
     maxResult: 20,
   });
   const handleChangeStorageId = (event: ChangeEvent<HTMLInputElement>) => {

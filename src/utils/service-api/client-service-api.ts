@@ -1,6 +1,8 @@
 import BaseFetch from "service-sdk/lib/fetch/BaseFetch";
 import {
+  ClientMenuUpdate,
   ClientStorageFilter,
+  NewClientMenu,
   NewClientRequest,
   NewClientStorage,
 } from "../types/clientType";
@@ -13,10 +15,14 @@ import {
   SEND_EMAIL_CLIENT_URL,
   SEND_EMAIL_CONFIG_URL,
   GET_BUSINESS_CLient_URL,
-  CLIENT_DETAIL_DEV_URL,
   SEARCH_STORAGE_URL,
   ADD_CLIENT_STORAGE_URL,
   GET_STORAGE_DETAIL_URL,
+  GET_CLIENT_INFO_URL,
+  GET_CLIENT_MENU_TREE_URL,
+  ADD_CLIENT_MENU_URL,
+  UPDATE_CLIENT_MENU,
+  GET_CLIENT_MENU_URL,
 } from "../constants/clientConstants";
 import RestController, { tokenHeader } from "./base-rest";
 import { EmailSender, EmailSenderConfig } from "../types/clientType";
@@ -40,9 +46,22 @@ export const searchClient = (
 };
 
 //developer
-export const getClientDetailDev = (clientId: string): Promise<BaseFetch> => {
-  return RestController.getRestController(
-    CLIENT_DETAIL_DEV_URL + clientId,
+export const updateClientMenu = (
+  clientId: string,
+  menuId: string,
+  request: ClientMenuUpdate
+) => {
+  return RestController.putRestController(
+    UPDATE_CLIENT_MENU + clientId + "/" + menuId,
+    request,
+    token
+  );
+};
+
+export const addClientMenu = (clientId: string, request: NewClientMenu) => {
+  return RestController.postRestController(
+    ADD_CLIENT_MENU_URL + clientId,
+    request,
     token
   );
 };
@@ -58,6 +77,20 @@ export const addClientStorage = (
 };
 
 //client
+export const getClientMenu = (clientId: string, menuId: string) => {
+  return RestController.getRestController(
+    GET_CLIENT_MENU_URL + clientId + "/" + menuId
+  );
+};
+
+export const getClientMenuTree = (clientId: string) => {
+  return RestController.getRestController(GET_CLIENT_MENU_TREE_URL + clientId);
+};
+
+export const getClient = (clientId: string): Promise<BaseFetch> => {
+  return RestController.getRestController(GET_CLIENT_INFO_URL + clientId);
+};
+
 export const getStorageDetail = (clientId: string, cStorageId: string) => {
   return RestController.getRestController(
     GET_STORAGE_DETAIL_URL + clientId + "/" + cStorageId

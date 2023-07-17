@@ -9,11 +9,11 @@ import TableCutom, {
 } from "../../components/table-custom/TableCustom";
 import { selectUserOrgId } from "xuanluan-component/lib/redux/auth/auth-selectors";
 import { useAppSelector } from "xuanluan-component/lib/redux/store";
-import SearchFilter from "../../utils/search/SearchFilter";
 import { searchOrganization } from "../../utils/service-api/org-service-api";
 import { ResultList } from "../../utils/types/baseType";
 import { Organization } from "../../utils/types/orgType";
 import OrgModal from "./modal/OrgModal";
+import SearchFilter from "xuanluan-component/lib/utils/search/SearchFilter";
 
 const columns: ColumnCustom[] = [
   { field: "orgId", header: "Mã" },
@@ -26,7 +26,7 @@ const OrganizationList = () => {
   const { filter, changePageFilter, handleFilter } = SearchFilter<BaseFilter>({
     search: "",
     maxResult: 20,
-    offset: 0,
+    index: 0,
   });
   const [result, setResult] = useState<ResultList<Organization>>();
   const [show, setShow] = useState(false);
@@ -39,7 +39,7 @@ const OrganizationList = () => {
       searchOrganization(userOrgId, filter).then((data) => {
         setResult(data.data?.data);
       });
-  }, [filter.offset, filter.maxResult, userOrgId]);
+  }, [filter.index, filter.maxResult, userOrgId]);
 
   return (
     <Col className="main">

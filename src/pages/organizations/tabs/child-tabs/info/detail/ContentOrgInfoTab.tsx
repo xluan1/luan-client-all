@@ -1,5 +1,5 @@
 import React, { ChangeEvent, FC, useState } from "react";
-import { Col, Form, Row } from "react-bootstrap";
+import { Card, Col, Form, Row } from "react-bootstrap";
 import FormInput from "../../../../../../components/form/form-input/FormInput";
 import InputFile from "../../../../../../components/input/input-file/InputFile";
 import { OrganizationInfo } from "../../../../../../utils/types/orgType";
@@ -71,14 +71,12 @@ const ContentOrgInfoTab: FC<PropTypes> = ({ result }) => {
             disabled={isUpdate}
           />
         </Col>
+
         <Col className="col" md={5}>
-          <InputFile
-            roundedCircle={false}
-            name="logoUrl"
-            currentImage={result.orgLogoId}
-            title="Thay đổi ảnh"
-            disabled={isUpdate}
-          />
+          <Card>
+            <Card.Img src={result.orgLogoId} style={{ maxHeight: 500 }} />
+          </Card>
+          <InputFile name="logoUrl" disabled={isUpdate} />
         </Col>
       </Row>
     </Form>

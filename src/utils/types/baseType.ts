@@ -1,5 +1,5 @@
 export interface BaseEntity {
-  id?: string;
+  id: string;
   createdBy?: string | undefined;
   updatedBy?: string | undefined;
   createdAt?: Date;
@@ -9,6 +9,16 @@ export interface BaseEntity {
 export interface BaseInfo {
   name?: string;
   description?: string;
+}
+
+export interface FileStorage extends BaseEntity {
+  type: string;
+  name: string;
+  originFile: string;
+  size: number;
+  data: any;
+  entity: string;
+  entityClass: string;
 }
 
 export interface ResultList<T> {

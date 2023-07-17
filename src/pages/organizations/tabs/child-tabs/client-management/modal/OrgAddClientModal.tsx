@@ -6,7 +6,7 @@ import FormInput from "../../../../../../components/form/form-input/FormInput";
 import FormSelectCustom from "../../../../../../components/form/form-select/FormSelect";
 import { selectUsername } from "xuanluan-component/lib/redux/auth/auth-selectors";
 import { useAppSelector } from "xuanluan-component/lib/redux/store";
-import SearchFilter from "../../../../../../utils/search/SearchFilter";
+import SearchFilter from "xuanluan-component/lib/utils/search/SearchFilter";
 import {
   getAllBusinessClient,
   getStorageDetail,
@@ -36,7 +36,7 @@ const OrgAddClientModal: FC<ShowModal> = ({ isOpened, handleClose }) => {
   );
   const { filter } = SearchFilter<ClientStorageFilter>({
     search: "",
-    offset: 0,
+    index: 0,
     maxResult: 20,
   });
   const handleChangeClientId = (event: ChangeEvent<HTMLInputElement>) => {

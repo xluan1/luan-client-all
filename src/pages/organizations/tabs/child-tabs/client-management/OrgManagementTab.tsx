@@ -8,7 +8,7 @@ import TableCutom, {
   ColumnCustom,
 } from "../../../../../components/table-custom/TableCustom";
 import { clientId } from "../../../../../utils/constants/baseConstants";
-import SearchFilter from "../../../../../utils/search/SearchFilter";
+import SearchFilter from "xuanluan-component/lib/utils/search/SearchFilter";
 import { searchOrganizationClient } from "../../../../../utils/service-api/org-service-api";
 import { ResultList } from "../../../../../utils/types/baseType";
 import { OrganizationClient } from "../../../../../utils/types/orgType";
@@ -17,6 +17,7 @@ import OrgAddClientModal from "./modal/OrgAddClientModal";
 
 const columns: ColumnCustom[] = [
   { field: "clientId", header: "Mã dịch vụ" },
+  { field: "name", header: "Tên" },
   { field: "description", header: "Mô tả" },
   { field: "createdAt", header: "Ngày tạo" },
 ];
@@ -26,7 +27,7 @@ const OrgManagementTab = () => {
   const [result, setResult] = useState<ResultList<OrganizationClient>>();
   const { filter, changePageFilter, handleFilter } = SearchFilter<BaseFilter>({
     search: "",
-    offset: 0,
+    index: 0,
     maxResult: 20,
   });
   const [show, setShow] = useState(false);
@@ -38,7 +39,7 @@ const OrgManagementTab = () => {
     searchOrganizationClient(clientId, outletContext.orgId, filter).then(
       (data) => setResult(data.data?.data)
     );
-  }, [filter.offset, filter.maxResult, outletContext.orgId]);
+  }, [filter.index, filter.maxResult, outletContext.orgId]);
   return (
     <>
       <Col className="main">

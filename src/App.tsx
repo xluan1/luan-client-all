@@ -1,6 +1,5 @@
 import React, { FC, useEffect } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
-import PrivatedRoutes, { isSuccessLogin } from "./utils/PrivatedRoutes";
 import LoginTemplate from "./templates/LoginTL";
 import LoginOTPTL from "./templates/LoginOTPTL";
 import LoginPINTL from "./templates/LoginPINTL";
@@ -19,22 +18,23 @@ import AccountClientManagementTab from "./pages/clients/client-services/client/t
 import ClientManagementTab from "./pages/clients/client-services/client/tabs/child-tabs/org-management/ClientManagementTab";
 import OrgManagementTab from "./pages/organizations/tabs/child-tabs/client-management/OrgManagementTab";
 import { useAppDispatch } from "xuanluan-component/lib/redux/store";
-import { JwtResponse } from "xuanluan-component/lib/utils/types/authType";
 import { setCurrentUser } from "xuanluan-component/lib/redux/auth/auth-slice";
 import { clientId } from "./utils/constants/baseConstants";
 import ClientStoragesTab from "./pages/clients/client-services/client/tabs/child-tabs/storages-client/ClientStoragesTab";
+import PrivatedRoutes, {
+  isSuccessLogin,
+  currentUser,
+} from "xuanluan-component/lib/PrivatedRoutes";
+import ClientMenuTab from "./pages/clients/client-services/client/tabs/child-tabs/menus/ClientMenuTab";
 
 const App: FC = () => {
-  const isSuccess = isSuccessLogin();
+  const isSuccess = isSuccessLogin(clientId);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    const info = localStorage.getItem(clientId + "currentUser");
-    if (info) {
-      const currentUser: JwtResponse = JSON.parse(info);
-      currentUser && dispatch(setCurrentUser(currentUser));
-    }
-  }, []);
+    const currentInfo = currentUser(clientId);
+    isSuccess && currentInfo && dispatch(setCurrentUser(currentInfo));
+  }, [isSuccess, dispatch]);
   return (
     <>
       <Routes>
@@ -45,7 +45,7 @@ const App: FC = () => {
           <Route path="/login" element={<Navigate to="/dashboard" replace />} />
         )}
 
-        <Route element={<PrivatedRoutes />}>
+        <Route element={<PrivatedRoutes clientId={clientId} />}>
           <Route path="/dashboard" element={<DashBoardTL />} />
           {/* client pages */}
           <Route path="/dashboard/client-list" element={<ClientServiceTL />} />
@@ -65,6 +65,7 @@ const App: FC = () => {
               path="account-client-tab"
               element={<AccountClientManagementTab />}
             />
+            <Route path="menu-tab" element={<ClientMenuTab />} />
             <Route path="storage-tab" element={<ClientStoragesTab />} />
           </Route>
           {/* organization detail */}

@@ -1,38 +1,29 @@
 import { BaseFilter } from "service-sdk/lib/types/BaseType";
-import { BaseEntity, BaseInfo } from "./baseType";
+import { BaseEntity, BaseInfo, FileStorage } from "./baseType";
 
 export interface ClientType extends BaseInfo {
   clientTypeId: string;
 }
 
-export interface Client extends BaseEntity {
-  name?: string;
+export interface Client extends BaseEntity, BaseInfo {
   clientTypeId: string;
+  clientId?: string;
+  leaderPhone?: string;
+  leaderName?: string;
+  url?: string;
+  clientEmail: string;
+  fileStorage?: FileStorage;
+}
+
+export interface ClientMenuDTO extends BaseInfo {
+  id: string;
+  path?: string;
+  component?: string;
+  icon?: string;
   description?: string;
-  clientId?: string;
-  clientImageId?: string;
+  subMenus?: ClientMenuDTO[];
 }
 
-export interface ClientInfo extends BaseEntity {
-  clientId?: string;
-  clientName?: string;
-  leaderPhone?: string;
-  leaderName?: string;
-  url?: string;
-}
-
-export interface ClientDetail extends BaseInfo {
-  typeDesc?: string;
-  logoUrl?: string;
-  userObject?: number;
-  isInBusiness?: boolean;
-  isActive?: boolean;
-  clientEmail?: string;
-  leaderPhone?: string;
-  leaderName?: string;
-  url?: string;
-  emailServer: EmailConfig;
-}
 export interface ClientStorage extends BaseEntity, BaseInfo {
   type?: number;
   url?: string;
@@ -46,6 +37,17 @@ export interface ClientStorageFilter extends BaseFilter {
   capacityFrom?: number;
   capacityTo?: number;
 }
+
+export interface ClientMenuUpdate {
+  byUser?: string;
+  dto: ClientMenuDTO;
+}
+
+export interface NewClientMenu {
+  byUser?: string;
+  menus: ClientMenuDTO[];
+}
+
 export interface NewStorageSale {
   name: string;
   path?: string;

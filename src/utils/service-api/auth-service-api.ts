@@ -1,49 +1,11 @@
-import {
-  LOGIN_URL,
-  CHECK_OTP_URL,
-  CHECK_PIN_URL,
-  RESET_OTP_URL,
-  SEARCH_USER_URL,
-  CURRENT_USER_TOKEN_URL,
-  LOGOUT_URL,
-} from "../constants/urlConstants";
-import {
-  UserLocalLoginRequest,
-  LoginOTPRequest,
-  LoginPINRequest,
-  ResetOTPRequest,
-  UserFilter,
-} from "../types/authType";
+import { SEARCH_USER_URL } from "../constants/urlConstants";
+import { UserFilter } from "../types/authType";
 import BaseFetch from "service-sdk/lib/fetch/BaseFetch";
 import RestController, { tokenHeader } from "./base-rest";
+import axios from "axios";
+import { BASE_URL, clientId } from "../constants/baseConstants";
 
 const token = tokenHeader();
-
-export const login = (request: UserLocalLoginRequest): Promise<BaseFetch> => {
-  return RestController.postRestController(LOGIN_URL, request);
-};
-
-export const loginOTP = (
-  sessionId: string | undefined,
-  request: LoginOTPRequest
-): Promise<BaseFetch> => {
-  return RestController.postRestController(CHECK_OTP_URL + sessionId, request);
-};
-
-export const loginPIN = (
-  sessionId: string | undefined,
-  request: LoginPINRequest
-): Promise<BaseFetch> => {
-  return RestController.postRestController(CHECK_PIN_URL + sessionId, request);
-};
-
-export const getCurrentUserToken = (sessiondId: string): Promise<BaseFetch> => {
-  return RestController.getRestController(CURRENT_USER_TOKEN_URL + sessiondId);
-};
-
-export const resetOTP = (request: ResetOTPRequest): Promise<BaseFetch> => {
-  return RestController.postRestController(RESET_OTP_URL, request);
-};
 
 export const searchUser = (
   clientId: string,
@@ -56,7 +18,12 @@ export const searchUser = (
     token
   );
 };
-
-export const logout = (sessionId: string) => {
-  return RestController.deleteRestController(LOGOUT_URL + sessionId);
+export const getToken = () => {
+  axios
+    .get(
+      BASE_URL +
+        "/auth-service/auth/1.0.0/get_current_user_token/FINAL_all_devsuperadmin_2d6092a4-ba13-4697-a811-bd0cf9c3fb60",
+      { headers: { clientId: clientId } }
+    )
+    .then((data) => console.log(data));
 };

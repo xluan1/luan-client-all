@@ -6,7 +6,7 @@ import SearchPage from "../../../../../../../components/search-page/SearchPage";
 import TableCutom, {
   ColumnCustom,
 } from "../../../../../../../components/table-custom/TableCustom";
-import SearchFilter from "../../../../../../../utils/search/SearchFilter";
+import SearchFilter from "xuanluan-component/lib/utils/search/SearchFilter";
 import { searchStorage } from "../../../../../../../utils/service-api/client-service-api";
 import { ResultList } from "../../../../../../../utils/types/baseType";
 import {
@@ -32,7 +32,7 @@ const ClientStoragesTab = () => {
   const { filter, changePageFilter, handleFilter } =
     SearchFilter<ClientStorageFilter>({
       search: "",
-      offset: 0,
+      index: 0,
       maxResult: 20,
     });
 
@@ -46,7 +46,7 @@ const ClientStoragesTab = () => {
 
   useEffect(() => {
     searchFunction();
-  }, [filter.offset, filter.maxResult, outletContext.clientId]);
+  }, [filter.index, filter.maxResult, outletContext.clientId]);
   return (
     <>
       <Col className="main">

@@ -224,8 +224,6 @@ a.sidebar-link.dropdown-toggle::after {
 .btn-custom {
   border-radius: 0.5rem;
   background-color: #84A98C;
-  /* margin: 0.5rem 2rem; */
-  padding: .4rem 1.25rem;
   color: #2F3E46;
   border: none;
 }
@@ -240,22 +238,12 @@ a.sidebar-link.dropdown-toggle::after {
   border-color: #84A98C;
 }
 
-@media only screen and (max-width: 400px) {
-  .btn-custom {
-    padding: .4rem .5rem;
-  }
-}
-
 .text-pagination {
   display: flex;
   align-items: center;
   font-size: 1rem;
   margin: 0 0.5rem;
 }
-
-/* .col-form-label.col-sm-3 {
-  text-align: center;
-} */
 
 select {
   -webkit-appearance: none;

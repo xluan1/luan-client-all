@@ -1,15 +1,16 @@
 import React, { ChangeEvent, FC, useState } from "react";
-import { Row, Col, Form } from "react-bootstrap";
+import { Row, Col, Form, Card } from "react-bootstrap";
 import FormInput from "../../../../../../../components/form/form-input/FormInput";
 import InputFile from "../../../../../../../components/input/input-file/InputFile";
-import { ClientDetail } from "../../../../../../../utils/types/clientType";
+import { Client } from "../../../../../../../utils/types/clientType";
 
 type PropTypes = {
-  result: ClientDetail;
+  result: Client;
 };
 
 const ContentClientInfoTab: FC<PropTypes> = ({ result }) => {
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {};
+  console.log(result);
 
   const [isUpdate, setIsUpdate] = useState<boolean>(true);
 
@@ -60,22 +61,6 @@ const ContentClientInfoTab: FC<PropTypes> = ({ result }) => {
           />
           <FormInput
             className="row"
-            label="Loại dịch vụ"
-            name="typeDesc"
-            value={result.typeDesc}
-            handleChange={handleChange}
-            disabled={isUpdate}
-          />
-          <FormInput
-            className="row"
-            label="Đối tượng"
-            name="userObject"
-            value={result.userObject}
-            handleChange={handleChange}
-            disabled={isUpdate}
-          />
-          <FormInput
-            className="row"
             label="Mô tả"
             name="description"
             value={result.description}
@@ -85,13 +70,13 @@ const ContentClientInfoTab: FC<PropTypes> = ({ result }) => {
           />
         </Col>
         <Col className="col" md={5}>
-          <InputFile
-            roundedCircle={false}
-            name="logoUrl"
-            currentImage={result.logoUrl}
-            title="Thay đổi ảnh"
-            disabled={isUpdate}
-          />
+          <Card>
+            <Card.Img
+              src={`data:${result.fileStorage?.type};base64,${result.fileStorage?.data}`}
+              style={{ maxHeight: 500 }}
+            />
+          </Card>
+          <InputFile name="logoUrl" disabled={isUpdate} />
         </Col>
       </Row>
     </Form>
